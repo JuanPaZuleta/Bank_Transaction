@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col s7">
+            <h1>Historial</h1>
+            <table class="table table-striped" style="border: 2px solid black;">
+                <thead>
+                    <tr>
+                        <th>Nombre destinatario</th>
+                        <th>RUT</th>
+                        <th>Banco</th>
+                        <th>Tipo de cuenta</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let transaction of transactionService.transactions">
+                        <td>{{ transaction.nameReceiver }}</td>
+                        <td>{{ transaction.rut }}</td>
+                        <td>{{ transaction.bankName }}</td>
+                        <td>{{ transaction.accountType }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>{{ getDate(transaction.createdAt) }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

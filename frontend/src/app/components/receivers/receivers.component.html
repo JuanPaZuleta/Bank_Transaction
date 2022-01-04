@@ -1,0 +1,66 @@
+<div class='container'>
+    <div class="row">
+        <div class="col s10">
+            <div class="card">
+                <div class="card-content">
+                    <form #receiverForm="ngForm" (ngSubmit)="addReceiver(receiverForm)">
+                        <h1>Nuevo Destinatario</h1>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="rut" #rut="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.rut" placeholder="RUT">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="name" #name="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.name" placeholder="Nombre Destinatario">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="mail" #mail="ngModel"
+                                [(ngModel)]="receiverService.selectedReceiver.mail" placeholder="mail Destinatario">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="phone" #phone="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.phone" placeholder="Teléfono">
+                            </div>
+                            <div class="input-field col s12">
+                                <input list="destinationBank" name="destinationBank" #destinationBank="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.destinationBank" placeholder="Ingrese el banco">
+                                <datalist id="destinationBank">
+                                    <option value="Banco Ripley">
+                                    <option value="Banco Desarrollo">
+                                    <option value="Banco Estado">
+                                    <option value="Banco Chile">
+                                    <option value="Banco Santander">
+                                    <option value="Banco Edwars">
+                                    <option value="Banco BCIbe">
+                                </datalist>
+                            </div>
+                            <div class="input-field col s12">
+                                <input list="accountType" name="accountType" #accountType="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.accountType" placeholder="Tipo de cuenta">
+                                <datalist id="accountType">
+                                    <option value="Corriente">
+                                    <option value="Vista">
+                                    <option value="Ahorro">
+                                    <option value="rut">
+                                    <option value="Chequera electrónica">
+                                </datalist>
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="Text" name="accountNumber" #accountNumber="ngModel" 
+                                [(ngModel)]="receiverService.selectedReceiver.accountNumber" placeholder="Monto a transferir">
+                            </div>
+                            <div class="card-action">
+                                <div class="input-field col s12">
+                                        <button class="btn right">Crear</button>
+                                        <button class="btn left" (click)="resetForm(receiverForm)">Cancelar</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<router-outlet></router-outlet>

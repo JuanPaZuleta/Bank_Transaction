@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col s5">
+            <div class="card">
+                <div class="card-content">
+                    <form #transactionForm="ngForm" (ngSubmit)="addTransaction(transactionForm)">
+                        <h1>Transferir</h1>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input type="text" name="nameReceiver" #nameReceiver="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.nameReceiver" placeholder="Nombre Destinatario">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="rut" #rut="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="bankName" #bankName="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.bankName" placeholder="Ingrese el banco">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="text" name="accountType" #accountType="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.accountType" placeholder="Tipo de cuenta">
+                            </div>
+                            <div class="input-field col s12">
+                                <input type="number" name="amount" #amount="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.amount" placeholder="Monto a transferir">
+                            </div>
+                            <div class="card-action">
+                                <div class="input-field col s12">
+                                        <button class="btn right">Transferir</button>
+                                        <button class="btn left" (click)="resetForm(transactionForm)">Cancelar</button>
+                                </div> 
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>

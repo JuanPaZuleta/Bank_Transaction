@@ -1,0 +1,13 @@
+<nav class="nav-wrapper blue">
+      <div class="container">
+        <a href="/" class="brand-logo">Mi banco - Nueva Transferencia</a>
+      </div>
+      <div class="container" style="width: 30%;">
+        <div class="input-field col s12">
+          <button class="btn right" style="margin-left: 5px; margin-top: 15px;" (click)="navigateToReceiver()">Nuevo Destinatario</button>
+          <button class="btn right" style="margin-left: 5px; margin-top: 15px;" (click)="navigateToTransfer()">Transferir</button>
+          <button class="btn right" style="margin-left: 5px; margin-top: 15px;" (click)="navigateToTransfers()">Historial</button>
+        </div> 
+      </div>
+  </nav>
+  <router-outlet></router-outlet>

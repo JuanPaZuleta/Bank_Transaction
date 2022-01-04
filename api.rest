@@ -1,0 +1,37 @@
+###
+GET http://localhost:4000/api/transactions
+
+###
+GET http://localhost:4000/api/receivers
+
+###
+POST http://localhost:4000/api/receivers
+Content-Type: application/json
+
+{
+    "name": "Juan Pablo",
+    "rut": "25245333-3",
+    "mail": "juanpablozuleta@gmail.com",
+    "phone": "978256085",
+    "destinationBank": "Banco Chile",
+    "accountType": "vista",
+    "accountNumber": "33444"
+}
+
+###
+GET http://localhost:4000/api/transactions/61ce6620fec541c4da4932a7
+
+
+###
+DELETE http://localhost:4000/api/transactions/61ce6811d9632253990279ca
+
+###
+PUT http://localhost:4000/api/transactions/61ce6a2f2aa23d05108b273f
+Content-Type: application/json
+
+{
+    "amount": 16000
+}
+
+###
+GET https://bast.dev/api/banks.php
