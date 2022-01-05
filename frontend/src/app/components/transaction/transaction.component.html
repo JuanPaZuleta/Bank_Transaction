@@ -7,12 +7,25 @@
                         <h1>Transferir</h1>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="text" name="nameReceiver" #nameReceiver="ngModel" 
-                                [(ngModel)]="transactionService.selectedTransaction.nameReceiver" placeholder="Nombre Destinatario">
+                                <input type="text" name="rut" #rut="ngModel" class="form-control"
+                                [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT" [(ngModel)]="filterReceiver">
+                            </div>
+                            <div class="col">
+                                <div class="row">
+                                    <div class="col">
+                                        <table class="table table-striped">
+                                            <tbody>
+                                                <tr *ngFor="let receiver of receiverService.receivers | filter:filterReceiver" >
+                                                    <button (click)="loadTransactionReceiver(receiver)">add</button>
+                                                </tr> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="input-field col s12">
-                                <input type="text" name="rut" #rut="ngModel" 
-                                [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT">
+                                <input type="text" name="nameReceiver" #nameReceiver="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.nameReceiver" placeholder="Nombre Destinatario">
                             </div>
                             <div class="input-field col s12">
                                 <input type="text" name="bankName" #bankName="ngModel" 

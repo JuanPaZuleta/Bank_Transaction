@@ -8,13 +8,15 @@ import { TransactionComponent } from './components/transaction/transaction.compo
 import { ReceiversComponent } from './components/receivers/receivers.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HistoryComponent } from './components/history/history.component';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     TransactionComponent,
     ReceiversComponent,
-    HistoryComponent
+    HistoryComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

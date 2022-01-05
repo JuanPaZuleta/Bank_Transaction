@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Receiver } from 'src/app/models/receiver';
 import { Bank } from 'src/app/models/bank';
 import { ReceiverService } from 'src/app/services/receiver.service';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 declare var M: any;
 
@@ -15,7 +15,8 @@ declare var M: any;
 })
 export class ReceiversComponent implements OnInit {
 
-  constructor(public receiverService: ReceiverService ) { }
+  constructor(public receiverService: ReceiverService,
+              private _router: Router ) { }
 
   ngOnInit() {
     this.getBanks();
@@ -43,12 +44,21 @@ export class ReceiversComponent implements OnInit {
   }
 
   addReceiver(form: NgForm){
-    console.log(form.value);
-    this.receiverService.postReceiver(form.value)
+    if(this.receiverService.selectedReceiver.accountNumber == '' || this.receiverService.selectedReceiver.accountType == ''
+      || this.receiverService.selectedReceiver.destinationBank == '' || this.receiverService.selectedReceiver.mail == ''
+      || this.receiverService.selectedReceiver.name == '' || this.receiverService.selectedReceiver.phone == ''
+      || this.receiverService.selectedReceiver.rut == ''){
+        M.toast({html: 'Debe ingresar todos los datos.'});
+    }else{
+      console.log(form.value);
+      this.receiverService.postReceiver(form.value)
       .subscribe(res => {
         console.log(res);
         M.toast({html: 'Destinatario creado.'});
+        this._router.navigate(['transaction'])
       })
+    }
+    
   }
 
   resetForm(form?: NgForm){

@@ -1,7 +1,7 @@
 export class Receiver {
 
     constructor(_id = '', name = '', rut = '', mail = '', phone = '', destinationBank = '', accountType= '', 
-    accountNumber = 0, createdAt = '', updateAt = '') {
+    accountNumber = '', createdAt = '', updateAt = '') {
         this._id = _id;
         this.name = name;
         this.rut = rut;
@@ -22,7 +22,7 @@ export class Receiver {
     phone: String
     destinationBank: String
     accountType: String
-    accountNumber: Number
+    accountNumber: String
     createdAt: String
     updateAt: String
 
