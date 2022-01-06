@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Receiver } from '../models/receiver';
-import { Bank } from '../models/bank';
+import { Banks } from '../models/bank';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ReceiverService {
 
   selectedReceiver: Receiver;
   receivers: Receiver[] | undefined;
-  banks: Bank[] | undefined;
+  banks: Banks[] | undefined;
   readonly URL_API = 'http://localhost:4000/api/receivers';
   readonly URL_APIBANK = 'https://bast.dev/api/banks.php';
 
@@ -43,5 +43,5 @@ export class ReceiverService {
     return this.http.get(this.URL_APIBANK);
   }
 
-
+  
 }

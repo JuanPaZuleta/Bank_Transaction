@@ -15,16 +15,16 @@ export class Receiver {
 
     }
     
-    _id: String
-    name:String
-    rut: String
-    mail: String
-    phone: String
-    destinationBank: String
-    accountType: String
-    accountNumber: String
-    createdAt: String
-    updateAt: String
+    _id: string
+    name:string
+    rut: string
+    mail: string
+    phone: string
+    destinationBank: string
+    accountType: string
+    accountNumber: string
+    createdAt: string
+    updateAt: string
 
 
 

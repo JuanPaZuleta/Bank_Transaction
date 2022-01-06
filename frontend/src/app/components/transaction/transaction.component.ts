@@ -4,6 +4,8 @@ import { ReceiverService } from 'src/app/services/receiver.service';
 import { Receiver } from 'src/app/models/receiver';
 import { Transaction } from 'src/app/models/transaction';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import 'src/assets/smtp.js';
 
 declare var M: any;
 
@@ -15,8 +17,11 @@ declare var M: any;
 })
 export class TransactionComponent implements OnInit {
 
+  model: Transaction = new Transaction();
+
   constructor(public transactionService: TransactionService,
-              public receiverService: ReceiverService) { }
+              public receiverService: ReceiverService,
+              private _router: Router) { }
 
   filterReceiver = '';
 
@@ -24,6 +29,20 @@ export class TransactionComponent implements OnInit {
     this.getTransactions();
     this.getReceivers();
   }
+
+  sendMail(form: NgForm){
+    console.log('ENVIANDO CORREO')
+    console.log(form.value)
+    Email.send({
+      SecureToken: '8cbf1f68-182b-4fde-9681-fb4db431b0df',
+      To : `${form.value.mail}`,
+      From : `juanpablozuleta@gmail.com`,
+      Subject : 'Mensaje Banco jpzg',
+      Body : `
+      <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b>${form.value.nameReceiver} <br /> <b>Email: </b>${form.value.mail}<br /> <b>Subject: </b>Mensaje Banco jpzg<br /> <b>Message:</b> <br /> Usted recibió una transferencia de Juan Pablo a su cuenta en ${form.value.bankName} por un monto de $ ${form.value.amount} <br><br> <ul><b>Detalle:</b> <li class="no-bullets"> Banco: ${form.value.bankName} <br> Monto: ${form.value.amount} <br> </li> </ul>  <b>Saludos!</b> <b>~End of Message.~</b> `
+      }).then( (message: any) => {alert(message); } );
+  }
+
 
   getTransactions(){
     this.transactionService.getTransaction().subscribe(
@@ -41,17 +60,25 @@ export class TransactionComponent implements OnInit {
     this.transactionService.selectedTransaction.bankName = receiver.destinationBank,
     this.transactionService.selectedTransaction.accountType = receiver.accountType,
     this.transactionService.selectedTransaction.rut = receiver.rut
+    console.log(this.transactionService.selectedTransaction);
   }
 
   addTransaction(form: NgForm){
-    if(this.transactionService.selectedTransaction.amount <= 0){
-      M.toast({html: 'El monto debe ser superor a 0.'})
+    if(this.transactionService.selectedTransaction.nameReceiver == '' || this.transactionService.selectedTransaction.rut == '' ||
+    this.transactionService.selectedTransaction.mail == '' || this.transactionService.selectedTransaction.bankName == '' ||
+    this.transactionService.selectedTransaction.accountType == ''){
+      M.toast({html: 'Debe seleccionar un destinatario.'})
     }else{
-      this.transactionService.postTransaction(form.value)
-      .subscribe(res => {
+      if(Number(this.transactionService.selectedTransaction.amount) <= 0){
+        M.toast({html: 'El monto es incorrecto.'})
+      }else{
+        this.transactionService.postTransaction(form.value)
+        .subscribe(res => {
         console.log(res);
         M.toast({html: 'Transacción realizada.'});
+        this.resetForm(form);
       })
+      }
     }
   }
 
@@ -67,7 +94,9 @@ export class TransactionComponent implements OnInit {
 
   resetForm(form?: NgForm){
     if (form){
-      form.reset();
+      /**form.reset();*/
+      this.filterReceiver = ''
+      this._router.navigate(['transaction']);
       this.transactionService.selectedTransaction = new Transaction();
     }
   }

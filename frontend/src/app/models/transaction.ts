@@ -14,14 +14,14 @@ export class Transaction {
 
     }
     
-    _id: String
-    nameReceiver:String
-    rut: String
-    mail: String
-    bankName: String
-    accountType: String
+    _id: string
+    nameReceiver:string
+    rut: string
+    mail: string
+    bankName: string
+    accountType: string
     amount: Number
-    createdAt: String
-    updateAt: String
+    createdAt: string
+    updateAt: string
     
 }

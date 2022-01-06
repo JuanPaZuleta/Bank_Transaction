@@ -3,49 +3,45 @@
         <div class="col s5">
             <div class="card">
                 <div class="card-content">
-                    <form #transactionForm="ngForm" (ngSubmit)="addTransaction(transactionForm)">
+                    <form #transactionForm="ngForm">
                         <h1>Transferir</h1>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input type="text" name="rut" #rut="ngModel" class="form-control"
+                                <label style="position: static;" for="rut">Buscador Destinatario</label>
+                                <input id="rut" type="text" name="rut" #rut="ngModel" class="form-control"
                                 [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT" [(ngModel)]="filterReceiver">
                             </div>
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col">
-                                        <table class="table table-striped">
-                                            <tbody>
-                                                <tr *ngFor="let receiver of receiverService.receivers | filter:filterReceiver" >
-                                                    <button (click)="loadTransactionReceiver(receiver)">add</button>
-                                                </tr> 
-                                            </tbody>
-                                        </table>
+                            <ul>
+                                <li  *ngFor="let receiver of receiverService.receivers | filter:filterReceiver">
+                                    Nombre: {{receiver.name}} <br>
+                                    Correo: {{receiver.mail}} <br>
+                                    Banco: {{receiver.destinationBank}} <br>
+                                    Tipo de Cuenta: {{receiver.accountType}} <br>
+                                    <div class="container" style="width: 30%;">
+                                        <button class="btn" (click)="loadTransactionReceiver(receiver)">Seleccionar</button>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="text" name="nameReceiver" #nameReceiver="ngModel" 
+                                </li>
+                            </ul>
+                            <input type="hidden" name="nameReceiver" #nameReceiver="ngModel" 
                                 [(ngModel)]="transactionService.selectedTransaction.nameReceiver" placeholder="Nombre Destinatario">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="text" name="bankName" #bankName="ngModel" 
+                            <input  type="hidden" name="bankName" #bankName="ngModel" 
                                 [(ngModel)]="transactionService.selectedTransaction.bankName" placeholder="Ingrese el banco">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="text" name="accountType" #accountType="ngModel" 
+                            <input  type="hidden" name="accountType" #accountType="ngModel" 
                                 [(ngModel)]="transactionService.selectedTransaction.accountType" placeholder="Tipo de cuenta">
-                            </div>
-                            <div class="input-field col s12">
-                                <input type="number" name="amount" #amount="ngModel" 
+                            <input  type="hidden" name="mail" #mail="ngModel" 
+                                [(ngModel)]="transactionService.selectedTransaction.mail" placeholder="Correo">
+                            <div  class="input-field col s12">
+                                <label style="position: static;"  for="amount">Monto a transferir</label>
+                                <input id="amount" type="text" name="amount" #amount="ngModel" 
                                 [(ngModel)]="transactionService.selectedTransaction.amount" placeholder="Monto a transferir">
                             </div>
                             <div class="card-action">
                                 <div class="input-field col s12">
-                                        <button class="btn right">Transferir</button>
+                                        <button class="btn right" (click)="addTransaction(transactionForm)" (click)="sendMail(transactionForm)">Transferir</button> 
                                         <button class="btn left" (click)="resetForm(transactionForm)">Cancelar</button>
                                 </div> 
                             </div>
-                        </div>
+                        </div> 
                     </form>
                 </div>
             </div>

@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, arg: any): any {
-    if(arg == '' || arg.length < 8) return value;
+    if(arg == '' || arg.length < 8) return [];
     const resultReceiver = [];
     
     for(const receiver of value){
