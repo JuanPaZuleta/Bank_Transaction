@@ -21,6 +21,7 @@ export class ReceiverService {
   }
 
   getReceivers(){
+    console.log(this.URL_API);
     return this.http.get(this.URL_API);
   }
 
