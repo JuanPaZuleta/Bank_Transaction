@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Transaction } from '../models/transaction';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class TransactionService {
   
   selectedTransaction: Transaction;
   transactions: Transaction[] | undefined;
-  readonly URL_API = 'http://localhost:4000/api/transactions';
+  readonly URL_API = environment.apiUrl+'/api/transactions';
 
   constructor(public http: HttpClient){
     this.selectedTransaction = new Transaction();

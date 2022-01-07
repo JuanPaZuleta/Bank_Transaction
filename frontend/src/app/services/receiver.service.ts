@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Receiver } from '../models/receiver';
 import { Banks } from '../models/bank';
+import { environment } from '../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ReceiverService {
   selectedReceiver: Receiver;
   receivers: Receiver[] | undefined;
   banks: Banks[] | undefined;
-  readonly URL_API = 'http://localhost:4000/api/receivers';
+  readonly URL_API = environment.apiUrl+'/api/receivers';
   readonly URL_APIBANK = 'https://bast.dev/api/banks.php';
 
 
