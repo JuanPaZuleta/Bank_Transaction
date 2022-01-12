@@ -9,7 +9,8 @@
                             <div class="input-field col s12">
                                 <label style="position: static;" for="rut">Buscador Destinatario</label>
                                 <input id="rut" type="text" name="rut" #rut="ngModel" class="form-control"
-                                [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT" [(ngModel)]="filterReceiver">
+                                [(ngModel)]="transactionService.selectedTransaction.rut" placeholder="Ingrese RUT" 
+                                [(ngModel)]="filterReceiver" autocomplete="off">
                             </div>
                             <ul>
                                 <li  *ngFor="let receiver of receiverService.receivers | filter:filterReceiver">
@@ -33,7 +34,8 @@
                             <div  class="input-field col s12">
                                 <label style="position: static;"  for="amount">Monto a transferir</label>
                                 <input id="amount" type="text" name="amount" #amount="ngModel" 
-                                [(ngModel)]="transactionService.selectedTransaction.amount" placeholder="Monto a transferir">
+                                [(ngModel)]="transactionService.selectedTransaction.amount" placeholder="Monto a transferir"
+                                autocomplete="off">
                             </div>
                             <div class="card-action">
                                 <div class="input-field col s12">

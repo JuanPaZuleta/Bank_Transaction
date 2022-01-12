@@ -61,6 +61,7 @@ export class TransactionComponent implements OnInit {
     this.transactionService.selectedTransaction.accountType = receiver.accountType,
     this.transactionService.selectedTransaction.rut = receiver.rut
     console.log(this.transactionService.selectedTransaction);
+    M.toast({html: 'Destinatario seleccionado.'})
   }
 
   addTransaction(form: NgForm){
