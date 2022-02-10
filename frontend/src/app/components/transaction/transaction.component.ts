@@ -36,7 +36,7 @@ export class TransactionComponent implements OnInit {
     Email.send({
       SecureToken: '8cbf1f68-182b-4fde-9681-fb4db431b0df',
       To : `${form.value.mail}`,
-      From : `juanpablozuleta@gmail.com`,
+      From : `correos@gmail.com`,
       Subject : 'Mensaje Banco jpzg',
       Body : `
       <i>This is sent as a feedback from my resume page.</i> <br/> <b>Name: </b>${form.value.nameReceiver} <br /> <b>Email: </b>${form.value.mail}<br /> <b>Subject: </b>Mensaje Banco jpzg<br /> <b>Message:</b> <br /> Usted recibió una transferencia de Juan Pablo a su cuenta en ${form.value.bankName} por un monto de $ ${form.value.amount} <br><br> <ul><b>Detalle:</b> <li class="no-bullets"> Banco: ${form.value.bankName} <br> Monto: ${form.value.amount} <br> </li> </ul>  <b>Saludos!</b> <b>~End of Message.~</b> `
